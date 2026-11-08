@@ -1,0 +1,8 @@
+{
+  "appId": "com.surveyoreveryday.app",
+  "appName": "Surveyor Everyday",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": false
+  }
+}
