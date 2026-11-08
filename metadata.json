@@ -1,0 +1,6 @@
+{
+  "name": "Surveyor Everyday - Mining Field Survey",
+  "description": "Aplikasi surveyor tambang lapangan offline-first dengan peta satelit, plot titik/line/poligon koordinat UTM WGS84 NEZ 3 desimal, serta import/export DXF, KML, GeoTIFF, ECW, dan GeoPDF.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

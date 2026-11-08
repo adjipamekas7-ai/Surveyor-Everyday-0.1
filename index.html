@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="id" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      // Browser Extension Compatibility Shim: Ensure window.fetch has both getter and setter
+      try {
+        let _customFetch = window.fetch ? window.fetch.bind(window) : null;
+        Object.defineProperty(window, 'fetch', {
+          get() {
+            return _customFetch;
+          },
+          set(newFetch) {
+            _customFetch = newFetch;
+          },
+          configurable: true,
+          enumerable: true,
+        });
+      } catch (e) {
+        // Fallback safely if already locked
+      }
+
+      // Suppress unhandled errors originating from external browser extensions
+      window.addEventListener('error', function (event) {
+        if (
+          (event.filename && (event.filename.includes('chrome-extension://') || event.filename.includes('moz-extension://'))) ||
+          (event.message && event.message.includes('Cannot set property fetch of #<Window>'))
+        ) {
+          event.preventDefault();
+          event.stopPropagation();
+          return false;
+        }
+      }, true);
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <link rel="icon" type="image/png" href="/icon-192.png" />
+    <title>Surveyor Everyday - Mining Field Survey</title>
+    <meta name="description" content="Aplikasi surveyor tambang lapangan offline-first dengan peta satelit, plot titik/line/poligon koordinat UTM WGS84 NEZ 3 desimal, serta import/export DXF, KML, GeoTIFF, ECW, dan GeoPDF." />
+    <meta property="og:title" content="Surveyor Everyday - Mining Field Survey" />
+    <meta property="og:description" content="Aplikasi surveyor tambang lapangan offline-first dengan peta satelit, plot titik/line/poligon koordinat UTM WGS84 NEZ 3 desimal, serta import/export DXF, KML, GeoTIFF, ECW, dan GeoPDF." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0b0f17" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Surveyor" />
+  </head>
+  <body class="bg-[#0b0f17] text-slate-100 overflow-hidden select-none font-['Plus_Jakarta_Sans',sans-serif]">
+    <div id="root" class="h-dvh w-screen flex flex-col overflow-hidden"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
